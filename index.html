@@ -19,24 +19,33 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    padding: 40px 0 56px;
   }
 
   .intro-splash-inner{
-    min-height: calc(100vh - 82px);
+    min-height: calc(100vh - 82px - 96px);
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
   .intro-word{
-    font-family: "Antonio", sans-serif;
-    font-size: clamp(4.8rem, 18vw, 15.5rem);
-    line-height: 0.86;
-    letter-spacing: 0.015em;
-    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0.01em;
     text-align: center;
     white-space: nowrap;
+  }
+
+  .intro-word span{
+    display: inline-block;
+    font-family: "Antonio", sans-serif;
+    font-size: clamp(3.8rem, 14vw, 12rem);
+    line-height: 0.9;
     font-weight: 700;
+    text-transform: uppercase;
 
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
@@ -45,28 +54,37 @@
     color: transparent;
 
     opacity: 0;
-    transform: translateY(22px) scaleY(1.22) scaleX(0.985);
-    filter: blur(10px);
-
-    animation: exacodeIntro 0.82s cubic-bezier(.16,1,.3,1) 0.08s forwards;
-    will-change: transform, opacity, filter, letter-spacing;
+    transform: translateY(70px);
+    animation: exacodeLetterRise 0.9s cubic-bezier(.22,1,.36,1) forwards;
+    will-change: transform, opacity;
   }
 
-  @keyframes exacodeIntro{
+  .intro-word span:nth-child(1){ animation-delay: 0.04s; }
+  .intro-word span:nth-child(2){ animation-delay: 0.11s; }
+  .intro-word span:nth-child(3){ animation-delay: 0.18s; }
+  .intro-word span:nth-child(4){ animation-delay: 0.25s; }
+  .intro-word span:nth-child(5){ animation-delay: 0.32s; }
+  .intro-word span:nth-child(6){ animation-delay: 0.39s; }
+  .intro-word span:nth-child(7){ animation-delay: 0.46s; }
+
+  @keyframes exacodeLetterRise{
     0%{
       opacity: 0;
-      transform: translateY(22px) scaleY(1.22) scaleX(0.985);
-      filter: blur(10px);
-      letter-spacing: 0.075em;
-    }
-    45%{
-      opacity: 1;
+      transform: translateY(70px);
     }
     100%{
       opacity: 1;
-      transform: translateY(0) scaleY(1) scaleX(1);
-      filter: blur(0);
-      letter-spacing: 0.015em;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 900px){
+    .intro-splash{
+      padding: 28px 0 44px;
+    }
+
+    .intro-word span{
+      font-size: clamp(3.1rem, 13vw, 7.5rem);
     }
   }
 
@@ -76,20 +94,26 @@
       min-height: calc(100vh - 74px);
     }
 
+    .intro-splash{
+      padding: 22px 0 36px;
+    }
+
     .intro-word{
-      font-size: clamp(3.3rem, 20vw, 7.2rem);
-      line-height: 0.9;
-      white-space: normal;
+      flex-wrap: wrap;
+      row-gap: 0.02em;
+    }
+
+    .intro-word span{
+      font-size: clamp(2.8rem, 15vw, 5.8rem);
+      line-height: 0.92;
     }
   }
 
   @media (prefers-reduced-motion: reduce){
-    .intro-word{
+    .intro-word span{
       animation: none;
       opacity: 1;
       transform: none;
-      filter: none;
-      letter-spacing: 0.015em;
     }
   }
 </style>
@@ -114,10 +138,18 @@
   </header>
 
   <section class="intro-splash" aria-label="Introduction ExaCode">
-    <div class="container intro-splash-inner">
-      <div class="intro-word">EXACODE</div>
+  <div class="container intro-splash-inner">
+    <div class="intro-word" aria-label="EXACODE">
+      <span>E</span>
+      <span>X</span>
+      <span>A</span>
+      <span>C</span>
+      <span>O</span>
+      <span>D</span>
+      <span>E</span>
     </div>
-  </section>
+  </div>
+</section>
 
   <main>
     <section class="hero section">
