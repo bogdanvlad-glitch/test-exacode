@@ -17,16 +17,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 48px 0 110px;
+    padding: 52px 0 132px;
     overflow-x: hidden;
     overflow-y: visible;
   }
 
   .intro-splash-inner{
-    min-height: calc(100vh - 82px - 158px);
+    min-height: calc(100vh - 82px - 184px);
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: visible;
   }
 
   .intro-content{
@@ -34,24 +35,26 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    overflow: visible;
   }
 
   .intro-word{
     display: inline-flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
     gap: 0;
     white-space: nowrap;
     text-align: center;
     line-height: 1;
-    padding-bottom: 0.14em;
+    padding-bottom: 0.22em;
+    overflow: visible;
   }
 
   .intro-word .letter{
     display: inline-block;
     font-family: "Antonio", sans-serif;
-    font-size: clamp(5.6rem, 13vw, 14rem);
-    line-height: 1;
+    font-size: clamp(5.9rem, 13.4vw, 14.4rem);
+    line-height: 1.06;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.01em;
@@ -67,8 +70,6 @@
     animation-fill-mode: forwards;
   }
 
-  /* Toutes les lettres doivent être en place en même temps :
-     temps final commun = 1.9s */
   .intro-word .from-left{
     animation: letterFromLeft 1.9s cubic-bezier(.22,1,.36,1) 0s forwards;
   }
@@ -98,7 +99,7 @@
   }
 
   .intro-subtitle{
-    margin-top: 26px;
+    margin-top: 18px;
     max-width: 920px;
     text-align: center;
     font-size: clamp(1rem, 1.4vw, 1.18rem);
@@ -111,7 +112,7 @@
     opacity: 0;
     transform: translateY(18px);
     filter: blur(6px);
-    animation: subtitleRevealSlow 1.2s ease 3.6s forwards;
+    animation: subtitleRevealSlow 0.85s ease 2.45s forwards;
   }
 
   @keyframes letterFromLeft{
@@ -210,49 +211,61 @@
 
   @media (max-width: 1200px){
     .intro-word .letter{
-      font-size: clamp(5rem, 12vw, 11.8rem);
+      font-size: clamp(5.2rem, 12.6vw, 12rem);
     }
   }
 
   @media (max-width: 900px){
     .intro-splash{
-      padding: 34px 0 80px;
+      padding: 36px 0 94px;
     }
 
     .intro-splash-inner{
-      min-height: calc(100vh - 82px - 114px);
+      min-height: calc(100vh - 82px - 130px);
+    }
+
+    .intro-word{
+      padding-bottom: 0.18em;
     }
 
     .intro-word .letter{
-      font-size: clamp(3.9rem, 12.5vw, 8.4rem);
+      font-size: clamp(4.2rem, 12vw, 8.8rem);
+      line-height: 1.04;
     }
 
     .intro-subtitle{
-      margin-top: 18px;
+      margin-top: 16px;
       max-width: 720px;
       font-size: 0.96rem;
       letter-spacing: 0.04em;
+      animation-delay: 2.3s;
     }
   }
 
   @media (max-width: 780px){
     .intro-splash{
       min-height: calc(100vh - 74px);
-      padding: 24px 0 58px;
+      padding: 26px 0 74px;
     }
 
     .intro-splash-inner{
-      min-height: calc(100vh - 74px - 82px);
+      min-height: calc(100vh - 74px - 100px);
+    }
+
+    .intro-word{
+      padding-bottom: 0.16em;
     }
 
     .intro-word .letter{
-      font-size: clamp(2.9rem, 12vw, 5.9rem);
+      font-size: clamp(3rem, 12vw, 6rem);
+      line-height: 1.04;
     }
 
     .intro-subtitle{
       padding: 0 14px;
       font-size: 0.88rem;
       line-height: 1.45;
+      animation-delay: 2.2s;
     }
 
     @keyframes letterFromLeft{
