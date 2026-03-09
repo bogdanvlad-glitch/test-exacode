@@ -11,20 +11,27 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-
-  <style>
+<style>
   .intro-splash{
     min-height: calc(100vh - 82px);
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    padding: 36px 0 84px;
+    padding: 48px 0 110px;
+    overflow-x: hidden;
+    overflow-y: visible;
   }
 
   .intro-splash-inner{
-    min-height: calc(100vh - 82px - 120px);
+    min-height: calc(100vh - 82px - 158px);
     display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .intro-content{
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
   }
@@ -36,17 +43,18 @@
     gap: 0;
     white-space: nowrap;
     text-align: center;
-    padding-bottom: 0.08em;
+    line-height: 1;
+    padding-bottom: 0.14em;
   }
 
-  .intro-word span{
+  .intro-word .letter{
     display: inline-block;
     font-family: "Antonio", sans-serif;
-    font-size: clamp(4.8rem, 16.2vw, 15rem);
-    line-height: 1.02;
+    font-size: clamp(5.6rem, 13vw, 14rem);
+    line-height: 1;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.012em;
+    letter-spacing: 0.01em;
 
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     -webkit-background-clip: text;
@@ -55,29 +63,100 @@
     color: transparent;
 
     opacity: 0;
-    transform: translateY(96px);
-    filter: blur(5px);
-    animation: exacodeLetterLift 1s cubic-bezier(.22,1,.36,1) forwards;
     will-change: transform, opacity, filter;
+    animation-fill-mode: forwards;
   }
 
-  .intro-word span:nth-child(1){ animation-delay: 0.02s; }
-  .intro-word span:nth-child(2){ animation-delay: 0.10s; }
-  .intro-word span:nth-child(3){ animation-delay: 0.18s; }
-  .intro-word span:nth-child(4){ animation-delay: 0.26s; }
-  .intro-word span:nth-child(5){ animation-delay: 0.34s; }
-  .intro-word span:nth-child(6){ animation-delay: 0.42s; }
-  .intro-word span:nth-child(7){ animation-delay: 0.50s; }
+  /* Toutes les lettres doivent être en place en même temps :
+     temps final commun = 1.9s */
+  .intro-word .from-left{
+    animation: letterFromLeft 1.9s cubic-bezier(.22,1,.36,1) 0s forwards;
+  }
 
-  @keyframes exacodeLetterLift{
+  .intro-word .fade-in:nth-child(2){
+    animation: letterFade 1.45s cubic-bezier(.22,1,.36,1) 0.45s forwards;
+  }
+
+  .intro-word .from-top{
+    animation: letterFromTop 1.65s cubic-bezier(.22,1,.36,1) 0.25s forwards;
+  }
+
+  .intro-word .fade-in:nth-child(4){
+    animation: letterFade 1.2s cubic-bezier(.22,1,.36,1) 0.7s forwards;
+  }
+
+  .intro-word .from-bottom{
+    animation: letterFromBottom 1.55s cubic-bezier(.22,1,.36,1) 0.35s forwards;
+  }
+
+  .intro-word .fade-in:nth-child(6){
+    animation: letterFade 1.05s cubic-bezier(.22,1,.36,1) 0.85s forwards;
+  }
+
+  .intro-word .from-right{
+    animation: letterFromRight 1.8s cubic-bezier(.22,1,.36,1) 0.1s forwards;
+  }
+
+  .intro-subtitle{
+    margin-top: 26px;
+    max-width: 920px;
+    text-align: center;
+    font-size: clamp(1rem, 1.4vw, 1.18rem);
+    line-height: 1.5;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted-strong);
+
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(6px);
+    animation: subtitleRevealSlow 1.2s ease 3.6s forwards;
+  }
+
+  @keyframes letterFromLeft{
     0%{
       opacity: 0;
-      transform: translateY(96px);
-      filter: blur(5px);
+      transform: translateX(-38vw);
+      filter: blur(6px);
     }
     60%{
       opacity: 1;
-      filter: blur(1px);
+      filter: blur(2px);
+    }
+    100%{
+      opacity: 1;
+      transform: translateX(0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes letterFromRight{
+    0%{
+      opacity: 0;
+      transform: translateX(38vw);
+      filter: blur(6px);
+    }
+    60%{
+      opacity: 1;
+      filter: blur(2px);
+    }
+    100%{
+      opacity: 1;
+      transform: translateX(0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes letterFromTop{
+    0%{
+      opacity: 0;
+      transform: translateY(-42vh);
+      filter: blur(6px);
+    }
+    60%{
+      opacity: 1;
+      filter: blur(2px);
     }
     100%{
       opacity: 1;
@@ -86,38 +165,168 @@
     }
   }
 
-  @media (max-width: 1100px){
-    .intro-word span{
-      font-size: clamp(4rem, 15vw, 11rem);
+  @keyframes letterFromBottom{
+    0%{
+      opacity: 0;
+      transform: translateY(42vh);
+      filter: blur(6px);
+    }
+    60%{
+      opacity: 1;
+      filter: blur(2px);
+    }
+    100%{
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes letterFade{
+    0%{
+      opacity: 0;
+      transform: scale(0.96);
+      filter: blur(8px);
+    }
+    100%{
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes subtitleRevealSlow{
+    0%{
+      opacity: 0;
+      transform: translateY(18px);
+      filter: blur(6px);
+    }
+    100%{
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  @media (max-width: 1200px){
+    .intro-word .letter{
+      font-size: clamp(5rem, 12vw, 11.8rem);
+    }
+  }
+
+  @media (max-width: 900px){
+    .intro-splash{
+      padding: 34px 0 80px;
+    }
+
+    .intro-splash-inner{
+      min-height: calc(100vh - 82px - 114px);
+    }
+
+    .intro-word .letter{
+      font-size: clamp(3.9rem, 12.5vw, 8.4rem);
+    }
+
+    .intro-subtitle{
+      margin-top: 18px;
+      max-width: 720px;
+      font-size: 0.96rem;
+      letter-spacing: 0.04em;
     }
   }
 
   @media (max-width: 780px){
     .intro-splash{
       min-height: calc(100vh - 74px);
-      padding: 28px 0 56px;
+      padding: 24px 0 58px;
     }
 
     .intro-splash-inner{
-      min-height: calc(100vh - 74px - 84px);
+      min-height: calc(100vh - 74px - 82px);
     }
 
-    .intro-word{
-      white-space: normal;
-      flex-wrap: wrap;
-      row-gap: 0;
-      padding-bottom: 0.05em;
+    .intro-word .letter{
+      font-size: clamp(2.9rem, 12vw, 5.9rem);
     }
 
-    .intro-word span{
-      font-size: clamp(3.6rem, 18vw, 7.2rem);
-      line-height: 1.02;
-      transform: translateY(72px);
+    .intro-subtitle{
+      padding: 0 14px;
+      font-size: 0.88rem;
+      line-height: 1.45;
+    }
+
+    @keyframes letterFromLeft{
+      0%{
+        opacity: 0;
+        transform: translateX(-48vw);
+        filter: blur(6px);
+      }
+      60%{
+        opacity: 1;
+        filter: blur(2px);
+      }
+      100%{
+        opacity: 1;
+        transform: translateX(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes letterFromRight{
+      0%{
+        opacity: 0;
+        transform: translateX(48vw);
+        filter: blur(6px);
+      }
+      60%{
+        opacity: 1;
+        filter: blur(2px);
+      }
+      100%{
+        opacity: 1;
+        transform: translateX(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes letterFromTop{
+      0%{
+        opacity: 0;
+        transform: translateY(-30vh);
+        filter: blur(6px);
+      }
+      60%{
+        opacity: 1;
+        filter: blur(2px);
+      }
+      100%{
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+    }
+
+    @keyframes letterFromBottom{
+      0%{
+        opacity: 0;
+        transform: translateY(30vh);
+        filter: blur(6px);
+      }
+      60%{
+        opacity: 1;
+        filter: blur(2px);
+      }
+      100%{
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
     }
   }
 
   @media (prefers-reduced-motion: reduce){
-    .intro-word span{
+    .intro-word .letter,
+    .intro-subtitle{
       animation: none;
       opacity: 1;
       transform: none;
@@ -147,14 +356,20 @@
 
   <section class="intro-splash" aria-label="Introduction ExaCode">
   <div class="container intro-splash-inner">
-    <div class="intro-word" aria-label="EXACODE">
-      <span>E</span>
-      <span>X</span>
-      <span>A</span>
-      <span>C</span>
-      <span>O</span>
-      <span>D</span>
-      <span>E</span>
+    <div class="intro-content">
+      <div class="intro-word" aria-label="EXACODE">
+        <span class="letter from-left">E</span>
+        <span class="letter fade-in">X</span>
+        <span class="letter from-top">A</span>
+        <span class="letter fade-in">C</span>
+        <span class="letter from-bottom">O</span>
+        <span class="letter fade-in">D</span>
+        <span class="letter from-right">E</span>
+      </div>
+
+      <p class="intro-subtitle">
+        Interfaces, plateformes et expériences web haut de gamme
+      </p>
     </div>
   </div>
 </section>
