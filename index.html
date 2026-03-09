@@ -10,9 +10,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Antonio:wght@700&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-<style>
+  <link rel="stylesheet" href="style.css"><style>
   .intro-splash{
+    position: sticky;
+    top: 82px;
+    z-index: 1;
     min-height: calc(100vh - 82px);
     display: flex;
     align-items: center;
@@ -113,6 +115,36 @@
     transform: translateY(18px);
     filter: blur(6px);
     animation: subtitleRevealSlow 0.85s ease 2.45s forwards;
+  }
+
+  .site-content-shell{
+    position: relative;
+    z-index: 4;
+    margin-top: -10vh;
+    background:
+      radial-gradient(circle at top left, rgba(62,226,255,0.10), transparent 28%),
+      radial-gradient(circle at top right, rgba(111,121,255,0.12), transparent 24%),
+      linear-gradient(180deg, #060912 0%, #0a1020 100%);
+    border-top-left-radius: 34px;
+    border-top-right-radius: 34px;
+    box-shadow:
+      0 -24px 60px rgba(0,0,0,0.28),
+      0 -1px 0 rgba(255,255,255,0.05);
+    overflow: hidden;
+  }
+
+  .site-content-shell::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .site-content-shell .hero.section{
+    padding-top: 124px;
   }
 
   @keyframes letterFromLeft{
@@ -244,6 +276,7 @@
 
   @media (max-width: 780px){
     .intro-splash{
+      top: 74px;
       min-height: calc(100vh - 74px);
       padding: 26px 0 74px;
     }
@@ -266,6 +299,16 @@
       font-size: 0.88rem;
       line-height: 1.45;
       animation-delay: 2.2s;
+    }
+
+    .site-content-shell{
+      margin-top: -7vh;
+      border-top-left-radius: 26px;
+      border-top-right-radius: 26px;
+    }
+
+    .site-content-shell .hero.section{
+      padding-top: 102px;
     }
 
     @keyframes letterFromLeft{
@@ -387,7 +430,7 @@
   </div>
 </section>
 
-  <main>
+  <main class="site-content-shell">
     <section class="hero section">
       <div class="container hero-grid">
         <div class="hero-copy">
